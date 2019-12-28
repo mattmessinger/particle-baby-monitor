@@ -476,10 +476,7 @@ void sendEventToCloud(String type) {
   snprintf(buf, sizeof(buf), "{\"device\":\"%s\", \"tempF\":%.1f, \"lastMovement\":%lu, \"battery\":%d}", deviceId.c_str(), tempF, lastMovementTime, (int)currentBatteryCharge);
   Serial.println("publishing event: ");
   Serial.println(buf);
-  sendBufToCloud(type);
-}
 
-void sendBufToCloud(String type) {
   // all of this retry logic is to try our best to get this message out
   bool succeded = false;
   for (int i = 0; i < PARTICLE_PUBLISH_RECONNECT_RETRIES && !succeded; i++) {
